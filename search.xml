@@ -8,9 +8,21 @@
       <link href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
       <url>/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>JavaScript 中使用的是 64 位双精度浮点数来存储数字。可以表示的数字的绝对值范围大约是：-1.79E+308 ~ +1.79E+308。超出这个范围的数就不一定能准确表示，就会产生精度问题。而计算机计算时是二进制，技术完成转换为十进制就超出了范围。</p><h1 id="JavaScript中精度丢失的经典问题"><a href="#JavaScript中精度丢失的经典问题" class="headerlink" title="JavaScript中精度丢失的经典问题"></a>JavaScript中精度丢失的经典问题</h1><p>浮点精度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span> === <span class="hljs-number">0.3</span>  <span class="hljs-comment">// false</span></code></pre></td></tr></table></figure></p><p>大数精度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">9999999999999999</span> == <span class="hljs-number">10000000000000001</span></code></pre></td></tr></table></figure></p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul><li>将浮点数乘以10^n使其成为整数,计算后再将结果除以10^n,n为他们之中最大的小数位。比如0.1 + 0.2，可以转化为(1*2)/10。</li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Function </tag>
+            
+        </tags>
       
     </entry>
     
