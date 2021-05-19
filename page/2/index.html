@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Fireworks 的个人博客，记录工作中的问题，分享技术与积累">
+  <meta name="author" content="Milo">
+  <meta name="keywords" content="PHP,Laravel,前端,Thinkphp,Vue,React">
+  
+  <title>Fireworks</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"thefirework.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"fa217f518ff242a2ad2b11973b931bb6","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fireworks</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="生命太短暂，不要去做一些根本没有人想要的东西">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
+          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter状态管理之InheritedWidget">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
+          Flutter状态管理之InheritedWidget
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
+          
+          
+            
+          
+          1.创建数据模型 CounterModel1class CounterModel &#123;2  final int count;3  const CounterModel(this.count);4&#125;
+2.创建 InheritedWidget1class CounterInherited extends InheritedWidget &#123;2  Widget child;3 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-05 16:18" pubdate>
+              2020-06-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Flutter/">Flutter</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">状态管理</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
+          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter应用权限配置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
+          Flutter应用权限配置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
+          
+          
+            
+          
+          配置文件 Android1android\app\src\main\AndroidManifest.xml2android\app\src\profile\AndroidManifest.xml
+权限列表 Android1&lt;!-- 允许一个程序访问CellID或WiFi热点来获取粗略的位置 --&gt;2&lt;uses-permission android:name="android.pe
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 11:06" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Flutter/">Flutter</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Flutter/">Flutter</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/Flutter%E4%B9%8BAndroid%E6%89%93%E5%8C%85/" target="_self">
+          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter之Android打包">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/01/Flutter%E4%B9%8BAndroid%E6%89%93%E5%8C%85/" target="_self">
+          Flutter之Android打包
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/Flutter%E4%B9%8BAndroid%E6%89%93%E5%8C%85/" target="_self">
+          
+          
+            
+          
+          1.生成 key1keytool -genkey -v -keystore my-reyarn lease-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+
+-keystore 参数后的值: my-release-key.jks,是生成的key的文件名和存放路径
+-alias 参数后的值: key 是key的名称
+
+执行之后
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 10:27" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Flutter/">Flutter</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Flutter/">Flutter</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E4%B8%8E%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="函数节流与函数防抖">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/01/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E4%B8%8E%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/" target="_self">
+          函数节流与函数防抖
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E4%B8%8E%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/" target="_self">
+          
+          
+            
+          
+          函数防抖(debounce)函数防抖是指在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。
+例如我们需要做一个实时查询的输入框,需要在用户停止输入就发送请求.当用户输入时会清除上一个还未执行的setTimeout,然后创建一个新的setTimeout,这样如果用户一直输入的话,就不会执行fn函数
+实现1const debounce = (fn, interval = 300) =&
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 09:39" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Function/">Function</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/JavaScript%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript工具函数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/01/JavaScript%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" target="_self">
+          JavaScript工具函数
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/JavaScript%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" target="_self">
+          
+          
+            
+          
+          验证规则验证邮箱1export const isEmail = (email) =&gt; &#123;2  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&#123;2,3&#125;)&#123;1,2&#125;)$/.test(email);3&#125;
+验证手机号码1export const isMobile = (
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 09:24" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Function/">Function</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/20/Javascript%E4%B9%8B%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="Javascript之函数柯里化">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/20/Javascript%E4%B9%8B%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" target="_self">
+          Javascript之函数柯里化
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/20/Javascript%E4%B9%8B%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" target="_self">
+          
+          
+            
+          
+          什么是柯里化柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数且返回结果的新函数的技术。
+简单示例1// 普通函数2function add(x,y) &#123;3    return x+y;4&#125;5add(1,2);           // 367// 柯里化函数89function addCurry(x) &#123;10    
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-20 14:16" pubdate>
+              2020-05-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Function/">Function</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript事件循环">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" target="_self">
+          JavaScript事件循环
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" target="_self">
+          
+          
+            
+          
+          事件循环JavaScript中的事件循环负责执行代码、收集和处理事件以及执行队列中的子任务。
+事件循环包含两个队列:
+- macrotask
+- microtask
+macrotask(宏任务)
+setTimeout
+setInterval
+setImmediate
+I/O
+UI渲染
+script(整体代码)
+
+microtask(微任务)
+Promise
+Object.observe
+Mutat
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-06 15:44" pubdate>
+              2020-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript事件委托">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          JavaScript事件委托
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          
+          
+            
+          
+          事件委托事件委托就是把原本需要绑定在子元素上面的响应事件委托给它们的父元素或者更外层元素。可以把事件分为事件冒泡和事件捕获。
+事件冒泡当鼠标点击或其他方式触发事件时，事件会从点击的元素不断上升直到根节点。会在某一个外层捕获这个冒泡事件，执行操作。
+示例如下只需要监听ul上是否触发点击事件，而不需要在每一个li上添加点击事件。因为每个函数都会占用内存空间，现在只需要一个事件处理程序酒可以代理所有事件
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-06 14:54" pubdate>
+              2020-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="认识Object.defineProperty()">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          认识Object.defineProperty()
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          
+          
+            
+          
+          definePropertyObject.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+语法
+Object.defineProperty(obj, prop, descriptor)
+
+参数- obj 要操作的对象
+- prop 修改或新增的属性名称
+- descriptor 属性描述符
+属性描述符描述符不能两者同时存在，只能是
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-06 09:32" pubdate>
+              2020-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Object/">Object</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/27/PHP%E4%B8%ADTrait%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          <img src="/img/default/php.jpg" srcset="/img/loading.gif" lazyload alt="PHP中Trait的使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/27/PHP%E4%B8%ADTrait%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          PHP中Trait的使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/04/27/PHP%E4%B8%ADTrait%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          
+            
+          
+          Traittriat是PHP中一种代码复用技术。  
+官方解释: 
+
+Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。Trait 为了减少单继承语言的限制，使开发人员能够自由地在不同层次结构内独立的类中复用 method。Trait 和 Class 组合的语义定义了一种减少复杂性的方式，避免传统多继承和 Mixin 类相关典型问题。
+
+创建 Triat使用关键字trait来创建
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-27 11:28" pubdate>
+              2020-04-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PHP/">PHP</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Trait/">Trait</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      jQuery('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      jQuery('#modalSearch').on('shown.bs.modal', function() {
+        jQuery('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

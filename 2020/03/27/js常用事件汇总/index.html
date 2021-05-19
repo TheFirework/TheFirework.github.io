@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Fireworks 的个人博客，记录工作中的问题，分享技术与积累">
+  <meta name="author" content="Milo">
+  <meta name="keywords" content="PHP,Laravel,前端,Thinkphp,Vue,React">
+  
+  <title>js常用事件汇总 - Fireworks</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"thefirework.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"fa217f518ff242a2ad2b11973b931bb6","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fireworks</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="js常用事件汇总">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-27 09:36" pubdate>
+        2020年3月27日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">js常用事件汇总</h1>
+            
+            <div class="markdown-body">
+              <h1 id="JavaScript事件类型"><a href="#JavaScript事件类型" class="headerlink" title="JavaScript事件类型"></a>JavaScript事件类型</h1><p>浏览器中的事件有很多，在这我只记录了常用的一些事件。详细内容请前往<a href="https://developer.mozilla.org/zh-CN/docs/Web/Events" target="_blank" rel="noopener">MDN</a>查看。</p>
+<h1 id="资源事件"><a href="#资源事件" class="headerlink" title="资源事件"></a>资源事件</h1><h2 id="onload-事件"><a href="#onload-事件" class="headerlink" title="onload 事件"></a>onload 事件</h2><p>onload 事件会在页面或图像加载完成后立即发生。</p>
+<p>在 HTML 中:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">"loadHtml()"</span>&gt;</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> &gt;</span><span class="javascript"></span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs html">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadHtml</span>(<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs html">     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'页面已加载'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs html">   &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></td></tr></table></figure></p>
+<p>在 javascript 中可以这样使用:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'资源已加载'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr></table></figure></p>
+<h2 id="unload-事件"><a href="#unload-事件" class="headerlink" title="unload 事件"></a>unload 事件</h2><p>当一个页面关闭，或者跳转到其他页面将触发<code>unload</code>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'unload'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'再见！'</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;);</code></pre></td></tr></table></figure>
+<h1 id="视图事件"><a href="#视图事件" class="headerlink" title="视图事件"></a>视图事件</h1><h2 id="resize-事件"><a href="#resize-事件" class="headerlink" title="resize 事件"></a>resize 事件</h2><p>当浏览器的窗口大小被重置时，就会触发<code>onresize</code>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">window</span>.onresize = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'窗口在变化'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr></table></figure>
+<h2 id="scroll-事件"><a href="#scroll-事件" class="headerlink" title="scroll 事件"></a>scroll 事件</h2><p><code>onscroll</code> 事件在元素滚动条在滚动时触发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> object = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'list'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript"> object.onscroll=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'滚动事件'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript"> object.addEventListener(<span class="hljs-string">"scroll"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'滚动事件'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;);</code></pre></td></tr></table></figure>
+<h1 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h1><p>焦点事件会在页面元素获得或失去焦点时触发。</p>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="blur-事件"><a href="#blur-事件" class="headerlink" title="blur 事件"></a>blur 事件</h1><p>在元素失去焦点时触发。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"input"</span>&gt;</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> &gt;</span><span class="javascript"></span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"input"</span>).onblur=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'失去焦点'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs html">&#125;;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></td></tr></table></figure>
+<h1 id="focus-事件"><a href="#focus-事件" class="headerlink" title="focus 事件"></a>focus 事件</h1><p>在元素获得焦点时触发</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"input"</span>&gt;</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> &gt;</span><span class="javascript"></span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"input"</span>).onfocus=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'获得焦点'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs html">&#125;;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></td></tr></table></figure>
+<h1 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h1><h2 id="click-事件"><a href="#click-事件" class="headerlink" title="click 事件"></a>click 事件</h2><p>在元素上按下并释放任意鼠标按键。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btn'</span>).onclick=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'点击事件'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;;</code></pre></td></tr></table></figure>
+<h2 id="dblclick-事件"><a href="#dblclick-事件" class="headerlink" title="dblclick 事件"></a>dblclick 事件</h2><p>在元素上双击鼠标按钮</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btn'</span>).ondblclick=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'双击事件'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;;</code></pre></td></tr></table></figure>
+<h2 id="mousedown-事件"><a href="#mousedown-事件" class="headerlink" title="mousedown 事件"></a>mousedown 事件</h2><p>鼠标按下事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btn'</span>).onmousedown=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'鼠标按下事件'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;;</code></pre></td></tr></table></figure>
+<h2 id="mouseenter-事件"><a href="#mouseenter-事件" class="headerlink" title="mouseenter 事件"></a>mouseenter 事件</h2><p>指针移到有事件监听的元素内，只会在进入时触发一次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">list.onmouseenter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标移入"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">list.addEventListener(<span class="hljs-string">"mouseenter"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标移入"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="mouseleave-事件"><a href="#mouseleave-事件" class="headerlink" title="mouseleave 事件"></a>mouseleave 事件</h2><p>指针移出元素范围外，只会在进入时触发一次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">list.mouseleave = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标移出"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">list.addEventListener(<span class="hljs-string">"mouseleave"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标移出"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="mousemove-事件"><a href="#mousemove-事件" class="headerlink" title="mousemove 事件"></a>mousemove 事件</h2><p>指针在元素内移动时持续触发.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">object.addEventListener(<span class="hljs-string">"onmousemove"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">let</span> oEvent = e||<span class="hljs-built_in">window</span>.event||event;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"坐标值:X:"</span> + oEvent.clientX + <span class="hljs-string">" Y:"</span> + oEvent.clientY);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">object.onmousemove = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">let</span> oEvent = e||<span class="hljs-built_in">window</span>.event||event;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"坐标值:X:"</span> + oEvent.clientX + <span class="hljs-string">" Y:"</span> + oEvent.clientY);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;;</code></pre></td></tr></table></figure>
+<h2 id="mouseover-事件"><a href="#mouseover-事件" class="headerlink" title="mouseover 事件"></a>mouseover 事件</h2><p>指针移到有事件监听的元素或者它的子元素内,在它的子元素之间移动也将触发事件.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">list.onmouseover = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标进入"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;;</code></pre></td></tr></table></figure>
+<h2 id="mouseout-事件"><a href="#mouseout-事件" class="headerlink" title="mouseout 事件"></a>mouseout 事件</h2><p>指针移出元素，或者移到它的子元素上，在它的子元素之间移动也将触发事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">list.addEventListener(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标移出1"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="mouseup-事件"><a href="#mouseup-事件" class="headerlink" title="mouseup 事件"></a>mouseup 事件</h2><p>释放鼠标时触发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">list.addEventListener(<span class="hljs-string">'mouseup'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"松开了鼠标"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;)</code></pre></td></tr></table></figure>
+<h2 id="select-事件"><a href="#select-事件" class="headerlink" title="select 事件"></a>select 事件</h2><p>select 事件会在文本框中的文本被选中时发生.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">input.onselect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`触发了选中事件`</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr></table></figure>
+<h2 id="wheel-事件"><a href="#wheel-事件" class="headerlink" title="wheel 事件"></a>wheel 事件</h2><p>wheel 事件在鼠标滚轮在元素上下滚动时触发。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">object.addEventListener(<span class="hljs-string">"wheel"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"鼠标滚轮事件"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;);</code></pre></td></tr></table></figure>
+<h1 id="拖放事件"><a href="#拖放事件" class="headerlink" title="拖放事件"></a>拖放事件</h1><h2 id="drag-事件"><a href="#drag-事件" class="headerlink" title="drag 事件"></a>drag 事件</h2><p>正在拖动元素或文本选区（在此过程中持续触发，每 350ms 触发一次）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">p.addEventListener(<span class="hljs-string">"drag"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"拖放事件"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;);</code></pre></td></tr></table></figure>
+<h2 id="dragend-事件"><a href="#dragend-事件" class="headerlink" title="dragend 事件"></a>dragend 事件</h2><p>拖放操作结束。（松开鼠标按钮或按下 Esc 键）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">p.addEventListener(<span class="hljs-string">"dragend"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"拖放结束事件"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;);</code></pre></td></tr></table></figure>
+<h2 id="dragenter-事件"><a href="#dragenter-事件" class="headerlink" title="dragenter 事件"></a>dragenter 事件</h2><p>被拖动的元素或文本选区移入有效释放目标区</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr></table></figure>
+<h2 id="dragstart-事件"><a href="#dragstart-事件" class="headerlink" title="dragstart 事件"></a>dragstart 事件</h2><p>用户开始拖动HTML元素或选中的文本</p>
+<h2 id="dragleave-事件"><a href="#dragleave-事件" class="headerlink" title="dragleave 事件"></a>dragleave 事件</h2><p>被拖动的元素或文本选区移出有效释放目标区</p>
+<h2 id="dragover-事件"><a href="#dragover-事件" class="headerlink" title="dragover 事件"></a>dragover 事件</h2><p>被拖动的元素或文本选区正在有效释放目标上被拖动 （在此过程中持续触发，每350ms触发一次）</p>
+<h2 id="drop-事件"><a href="#drop-事件" class="headerlink" title="drop 事件"></a>drop 事件</h2><p>元素在有效释放目标区上释放</p>
+<h1 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h1><h2 id="keydown-事件"><a href="#keydown-事件" class="headerlink" title="keydown 事件"></a>keydown 事件</h2><p>按下任意按键。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"keydown"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keydown</span>(<span class="hljs-params">event</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(event.keyCode);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="keypress-事件"><a href="#keypress-事件" class="headerlink" title="keypress 事件"></a>keypress 事件</h2><p>除 Shift、Fn、CapsLock 外的任意键被按住。（连续触发。）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"keypress"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keydown</span>(<span class="hljs-params">event</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(event.keyCode);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;);</code></pre></td></tr></table></figure>
+<h2 id="keyup-事件"><a href="#keyup-事件" class="headerlink" title="keyup 事件"></a>keyup 事件</h2><p>释放任意按键</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"keyup"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keydown</span>(<span class="hljs-params">event</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'释放按键'</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;);</code></pre></td></tr></table></figure>
+<h2 id="input-事件"><a href="#input-事件" class="headerlink" title="input 事件"></a>input 事件</h2><p>在用户输入时触发。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">input.addEventListener(<span class="hljs-string">"input"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"输入事件"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h1 id="剪贴板事件"><a href="#剪贴板事件" class="headerlink" title="剪贴板事件"></a>剪贴板事件</h1><h2 id="cut-事件"><a href="#cut-事件" class="headerlink" title="cut 事件"></a>cut 事件</h2><p>已经剪贴选中的文本内容并且复制到了剪贴板。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">input.addEventListener(<span class="hljs-string">'cut'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'剪切文本'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;)</code></pre></td></tr></table></figure>
+<h2 id="copy-事件"><a href="#copy-事件" class="headerlink" title="copy 事件"></a>copy 事件</h2><p>已经把选中的文本内容复制到了剪贴板。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">input.addEventListener(<span class="hljs-string">'copy'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'拷贝文本:'</span>+e.target.value)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript"> &#125;)</code></pre></td></tr></table></figure>
+<h2 id="paste-事件"><a href="#paste-事件" class="headerlink" title="paste 事件"></a>paste 事件</h2><p>从剪贴板复制的文本内容被粘贴。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">input.addEventListener(<span class="hljs-string">'paste'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'黏贴了文本'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;)</code></pre></td></tr></table></figure>
+<h1 id="媒体事件"><a href="#媒体事件" class="headerlink" title="媒体事件"></a>媒体事件</h1><h2 id="canplay-事件"><a href="#canplay-事件" class="headerlink" title="canplay 事件"></a>canplay 事件</h2><p>可以开始播放视频/音频（audio/video）时触发</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"audio"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">""</span> <span class="hljs-attr">oncanplay</span>=<span class="hljs-string">"play"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs html">  <span class="hljs-keyword">var</span> audio = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"audio"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs html">  audio.addEventListener(<span class="hljs-string">"canplay"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs html">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"可以开始播放视频"</span>);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs html">  &#125;);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></td></tr></table></figure>
+<h2 id="ended-事件"><a href="#ended-事件" class="headerlink" title="ended 事件"></a>ended 事件</h2><p>在视频/音频（audio/video）播放结束时触发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">object.addEventListener(<span class="hljs-string">"ended"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'视频已播放结束'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="error-事件"><a href="#error-事件" class="headerlink" title="error 事件"></a>error 事件</h2><p>在视频/音频（audio/video）数据加载期间发生错误时触发。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript">object.addEventListener(<span class="hljs-string">"ended"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'视频加载出现问题'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;);</code></pre></td></tr></table></figure>
+<h2 id="play-事件"><a href="#play-事件" class="headerlink" title="play 事件"></a>play 事件</h2><p>在视频/音频（audio/video）开始播放时触发。</p>
+<h2 id="pause-事件"><a href="#pause-事件" class="headerlink" title="pause 事件"></a>pause 事件</h2><p>在视频/音频（audio/video）暂停时触发。</p>
+<h2 id="playing-事件"><a href="#playing-事件" class="headerlink" title="playing 事件"></a>playing 事件</h2><p>在视频/音频（audio/video）暂停或者在缓冲后准备重新开始播放时触发。</p>
+<h2 id="seeked-事件"><a href="#seeked-事件" class="headerlink" title="seeked 事件"></a>seeked 事件</h2><p>在用户重新定位视频/音频（audio/video）的播放位置后触发。</p>
+<h2 id="volumechange-事件"><a href="#volumechange-事件" class="headerlink" title="volumechange 事件"></a>volumechange 事件</h2><p>在视频/音频（audio/video）的音量发生改变时触发。</p>
+<h2 id="timeupdate-事件"><a href="#timeupdate-事件" class="headerlink" title="timeupdate 事件"></a>timeupdate 事件</h2><p>在视频/音频（audio/video）当前的播放位置发送改变时触发。</p>
+<h1 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h1><h2 id="touchstart-事件"><a href="#touchstart-事件" class="headerlink" title="touchstart  事件"></a>touchstart  事件</h2><p>手指刚接触屏幕时触发</p>
+<h2 id="touchend-事件"><a href="#touchend-事件" class="headerlink" title="touchend  事件"></a>touchend  事件</h2><p>手指从屏幕上移开时触发</p>
+<h2 id="touchmove-事件"><a href="#touchmove-事件" class="headerlink" title="touchmove 事件"></a>touchmove 事件</h2><p>手指在屏幕上移动时触发</p>
+<h2 id="touchcancel-事件"><a href="#touchcancel-事件" class="headerlink" title="touchcancel 事件"></a>touchcancel 事件</h2><p>触摸过程被系统取消时触发</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/27/CSS3%E5%8A%A8%E7%94%BB%E5%88%9D%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS3动画初识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/26/%E7%94%A8css%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                        <span class="hidden-mobile">用css创建三角形</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"23105ea7560026277d52","clientSecret":"4b818ae7b29ee9dd13a9f17d0709986966353d60","repo":"blog-comments","owner":"TheFirework","admin":["TheFirework"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          { id: 'fce6d7c770f1700aa7c8d77172d0d314' }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      jQuery('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      jQuery('#modalSearch').on('shown.bs.modal', function() {
+        jQuery('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

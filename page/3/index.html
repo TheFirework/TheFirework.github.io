@@ -1,0 +1,932 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Fireworks 的个人博客，记录工作中的问题，分享技术与积累">
+  <meta name="author" content="Milo">
+  <meta name="keywords" content="PHP,Laravel,前端,Thinkphp,Vue,React">
+  
+  <title>Fireworks</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"thefirework.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"fa217f518ff242a2ad2b11973b931bb6","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fireworks</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="生命太短暂，不要去做一些根本没有人想要的东西">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/20/ThinkPHP5%E4%BD%BF%E7%94%A8laravel-mix/" target="_self">
+          <img src="/img/default/php.jpg" srcset="/img/loading.gif" lazyload alt="ThinkPHP5使用laravel-mix">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/20/ThinkPHP5%E4%BD%BF%E7%94%A8laravel-mix/" target="_self">
+          ThinkPHP5使用laravel-mix
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/04/20/ThinkPHP5%E4%BD%BF%E7%94%A8laravel-mix/" target="_self">
+          
+          
+            
+          
+          安装 Laravel-mix移动文件将webpack.mix.js 和 package.json两个文件复制到ThinkPHP5项目的根目录
+安装依赖1yarn install
+设置路径修改webpack.mix.js文件,增加.setPublicPath(&#39;./public&#39;);
+1const mix = require('laravel-mix');2mix.js('resou
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-20 20:34" pubdate>
+              2020-04-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PHP/">PHP</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PHP/">PHP</a>
+            
+              <a href="/tags/Laravel-mix/">Laravel-mix</a>
+            
+              <a href="/tags/ThinkPHP/">ThinkPHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/20/ThinkPHP5-1%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BBmigration%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85Faker%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          <img src="/img/default/php.jpg" srcset="/img/loading.gif" lazyload alt="ThinkPHP5.1中数据库迁移migration与数据填充Faker的使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/20/ThinkPHP5-1%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BBmigration%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85Faker%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          ThinkPHP5.1中数据库迁移migration与数据填充Faker的使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/04/20/ThinkPHP5-1%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BBmigration%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85Faker%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          
+            
+          
+          数据库迁移工具 think-migration通过composer安装1composer require topthink/think-migration=2.0.*
+安装完成后，在命令行下查看，就会发现新增了几个migrate和seed命令1php think
+1migrate2 migrate:create     Create a new migration3 migrate:rollbac
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-20 19:46" pubdate>
+              2020-04-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PHP/">PHP</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ThinkPHP/">ThinkPHP</a>
+            
+              <a href="/tags/Migration/">Migration</a>
+            
+              <a href="/tags/Faker/">Faker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/28/Vue%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" target="_self">
+          Vue组件间的通信
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/28/Vue%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" target="_self">
+          
+          
+            
+          
+          父组件向子组件传值
+父组件通过 v-bind 绑定 message 值到子组件的 prop.
+
+1&lt;template&gt;2  &lt;div id&#x3D;&quot;app&quot;&gt;3    &lt;Children v-bind:message&#x3D;&quot;message&quot;&gt;&lt;&#x2F;Children&gt;4  &lt;&#x2F;d
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-28 10:41" pubdate>
+              2020-03-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Vue/">Vue</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/27/CSS%E6%9D%83%E9%87%8D/" target="_self">
+          CSS权重
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/27/CSS%E6%9D%83%E9%87%8D/" target="_self">
+          
+          
+            
+          
+          CSS 选择器CSS 选择器参考手册
+
+
+
+
+选择器
+例子
+描述
+
+
+
+
+通配符
+*
+选择所有元素
+
+
+id
+#id
+选择 id=”firstname” 的所有元素
+
+
+class
+.container
+选择 class=”container” 的所有元素
+
+
+标签
+span
+选择所有  元素
+
+
+后代选择器
+div p
+选择  元素内部的所有  元素
+
+
+子元素选择器
+div&gt;p
+选择父元
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-27 12:23" pubdate>
+              2020-03-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/27/CSS3%E5%8A%A8%E7%94%BB%E5%88%9D%E8%AF%86/" target="_self">
+          CSS3动画初识
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/27/CSS3%E5%8A%A8%E7%94%BB%E5%88%9D%E8%AF%86/" target="_self">
+          
+          
+            
+          
+          CSS3 动画库推荐：AnimistaAnimateHoverThree DotsCSShakecssanimation
+CSS3 创建动画
+将元素与动画进行绑定,设置动画持续时间
+
+1div&#123;2	width:100px;3	height:100px;4	background:red;5	animation:change 5s;6&#125;
+
+创建 @keyframes 动画规则
+
+1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-27 11:47" pubdate>
+              2020-03-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/03/27/js%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%B1%87%E6%80%BB/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="js常用事件汇总">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/27/js%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%B1%87%E6%80%BB/" target="_self">
+          js常用事件汇总
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/27/js%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%B1%87%E6%80%BB/" target="_self">
+          
+          
+            
+          
+          JavaScript事件类型浏览器中的事件有很多，在这我只记录了常用的一些事件。详细内容请前往MDN查看。
+资源事件onload 事件onload 事件会在页面或图像加载完成后立即发生。
+在 HTML 中:1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log('
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-27 09:36" pubdate>
+              2020-03-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/26/%E7%94%A8css%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2/" target="_self">
+          用css创建三角形
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/26/%E7%94%A8css%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2/" target="_self">
+          
+          
+            
+          
+          原理设置一个div宽高都为0，通过border来控制这个div的大小。然后将其中几个边background设置为transparent，即可得到三角形
+实现1&lt;div class='triangle'&gt;&lt;/div&gt;
+1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;5
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-26 10:48" pubdate>
+              2020-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A0%B7%E5%BC%8F/">样式</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/26/%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/" target="_self">
+          在页面上隐藏元素的方法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/26/%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/" target="_self">
+          
+          
+            
+          
+          
+display:none;         // 让元素在页面中消失，不占据实际的空间
+overflow:hidden;      
+visibility:hidden;    // 隐藏内容，但占位保留
+opacity:0;            // 视觉上的隐藏，元素还是占据有文档的位置
+width:0,height:0;     // 元素宽高为0
+z-index: -999999999
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-26 10:40" pubdate>
+              2020-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0/">隐藏元素</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/26/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" target="_self">
+          圣杯布局和双飞翼布局的理解和区别
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/26/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" target="_self">
+          
+          
+            
+          
+          圣杯布局和双飞翼布局作用圣杯布局和双飞翼布局的作用是一样的，就是两边顶宽然后中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
+圣杯布局三栏利用 float 和 负margin 并排，设置父容器的padding给两边的侧边栏预留位置。
+1&lt;div class="wrapper"&gt;2    &lt;div class="middle"&gt;middle&lt;/div&gt;3
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-26 10:06" pubdate>
+              2020-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/03/26/%E5%A6%82%E4%BD%95%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" target="_self">
+          如何清除浮动？
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/26/%E5%A6%82%E4%BD%95%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" target="_self">
+          
+          
+            
+          
+          清除浮动
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-26 09:24" pubdate>
+              2020-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Float/">Float</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      jQuery('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      jQuery('#modalSearch').on('shown.bs.modal', function() {
+        jQuery('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

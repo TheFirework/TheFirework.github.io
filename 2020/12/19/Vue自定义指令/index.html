@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Fireworks 的个人博客，记录工作中的问题，分享技术与积累">
+  <meta name="author" content="Milo">
+  <meta name="keywords" content="PHP,Laravel,前端,Thinkphp,Vue,React">
+  
+  <title>Vue自定义指令 - Fireworks</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"thefirework.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"fa217f518ff242a2ad2b11973b931bb6","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fireworks</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vue自定义指令">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-19 19:13" pubdate>
+        2020年12月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue自定义指令</h1>
+            
+            <div class="markdown-body">
+              <p>除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。</p>
+<h2 id="自动注册指令"><a href="#自动注册指令" class="headerlink" title="自动注册指令"></a>自动注册指令</h2><p>新建 <code>directives/index.js</code>文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> copy <span class="hljs-keyword">from</span> <span class="hljs-string">'./copy'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> longpress <span class="hljs-keyword">from</span> <span class="hljs-string">'./longpress'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> permission <span class="hljs-keyword">from</span> <span class="hljs-string">'./permission'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> debounce <span class="hljs-keyword">from</span> <span class="hljs-string">'./debounce'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> emoji <span class="hljs-keyword">from</span> <span class="hljs-string">'./emoji'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> LazyLoad <span class="hljs-keyword">from</span> <span class="hljs-string">'./LazyLoad'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> waterMarker <span class="hljs-keyword">from</span> <span class="hljs-string">'./waterMarker'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> draggable <span class="hljs-keyword">from</span> <span class="hljs-string">'./draggable'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 自定义指令</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> directives = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">    copy,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">    longpress,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">    permission,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">    debounce,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">    emoji,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">    LazyLoad,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript">    waterMarker,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">    draggable</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">    install(Vue) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-built_in">Object</span>.keys(directives).forEach(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript">            Vue.directive(key, directives[key])</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr></table></figure>
+<p>在 <code>main.js</code> 文件引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> directives <span class="hljs-keyword">from</span> <span class="hljs-string">'@/directives'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">Vue.use(directives)</code></pre></td></tr></table></figure>
+<h2 id="指令列表"><a href="#指令列表" class="headerlink" title="指令列表"></a>指令列表</h2><ul>
+<li>复制粘贴指令 <code>v-copy</code></li>
+<li>长按指令 <code>v-longpress</code></li>
+<li>输入框防抖指令 <code>v-debounce</code></li>
+<li>禁止表情及特殊字符 <code>v-emoji</code></li>
+<li>图片懒加载 <code>v-LazyLoad</code></li>
+<li>权限校验指令 <code>v-premission</code></li>
+<li>实现页面水印 <code>v-waterMarker</code></li>
+<li>拖拽指令 <code>v-draggable</code></li>
+</ul>
+<h2 id="v-copy"><a href="#v-copy" class="headerlink" title="v-copy"></a>v-copy</h2><p>实现一键复制文本内容，用于鼠标右键粘贴。</p>
+<ol>
+<li>动态创建 textarea 标签，并设置 readOnly 属性及移出可视区域</li>
+<li>将要复制的值赋给 textarea 标签的 value 属性，并插入到 body</li>
+<li>选中值 textarea 并复制</li>
+<li>将 body 中插入的 textarea 移除</li>
+<li>在第一次调用时绑定事件，在解绑时移除事件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> copy = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  bind(el, &#123; value &#125;) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.$value = value</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.handler = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (!el.$value) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-comment">// 值为空的时候，给出提示。可根据项目UI仔细设计</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'无复制内容'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">return</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-comment">// 动态创建 textarea 标签</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">const</span> textarea = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'textarea'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-comment">// 将该 textarea 设为 readonly 防止 iOS 下自动唤起键盘，同时将 textarea 移出可视区域</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">      textarea.readOnly = <span class="hljs-string">'readonly'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">      textarea.style.position = <span class="hljs-string">'absolute'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">      textarea.style.left = <span class="hljs-string">'-9999px'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-comment">// 将要 copy 的值赋给 textarea 标签的 value 属性</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript">      textarea.value = el.$value</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-comment">// 将 textarea 插入到 body 中</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-built_in">document</span>.body.appendChild(textarea)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-comment">// 选中值并复制</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">      textarea.select()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.execCommand(<span class="hljs-string">'Copy'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (result) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'复制成功'</span>) <span class="hljs-comment">// 可根据项目UI仔细设计</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-built_in">document</span>.body.removeChild(textarea)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 绑定点击事件，就是所谓的一键 copy 啦</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'click'</span>, el.handler)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 当传进来的值更新的时候触发</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><code class="hljs javascript">  componentUpdated(el, &#123; value &#125;) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.$value = value</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 指令与元素解绑的时候，移除事件绑定</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><code class="hljs javascript">  unbind(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.removeEventListener(<span class="hljs-string">'click'</span>, el.handler)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> copy</code></pre></td></tr></table></figure>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;button v-copy&#x3D;&quot;copyText&quot;&gt;复制&lt;&#x2F;button&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt; </code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs vue">export default &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs vue">    data() &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs vue">      return &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs vue">        copyText: &#39;a copy directives&#39;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs vue">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs vue">    &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs vue">&#125; </code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;script&gt;</code></pre></td></tr></table></figure></p>
+<h2 id="v-longpress"><a href="#v-longpress" class="headerlink" title="v-longpress"></a>v-longpress</h2><p>实现长按，用户需要按下并按住按钮几秒钟，触发相应的事件</p>
+<ol>
+<li>创建一个计时器， 2 秒后执行函数</li>
+<li>当用户按下按钮时触发 mousedown 事件，启动计时器；用户松开按钮时调用 mouseout 事件。</li>
+<li>如果 mouseup 事件 2 秒内被触发，就清除计时器，当作一个普通的点击事件</li>
+<li>如果计时器没有在 2 秒内清除，则判定为一次长按，可以执行关联的函数。</li>
+<li><p>在移动端要考虑 touchstart，touchend 事件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> longpress = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">bind</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el, binding, vNode</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> binding.value !== <span class="hljs-string">'function'</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">throw</span> <span class="hljs-string">'callback must be a function'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 定义变量</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> pressTimer = <span class="hljs-literal">null</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 创建计时器（ 2秒后执行函数 ）</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> start = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (e.type === <span class="hljs-string">'click'</span> &amp;&amp; e.button !== <span class="hljs-number">0</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">return</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (pressTimer === <span class="hljs-literal">null</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">        pressTimer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">          handler()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;, <span class="hljs-number">2000</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 取消计时器</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> cancel = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (pressTimer !== <span class="hljs-literal">null</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">        clearTimeout(pressTimer)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript">        pressTimer = <span class="hljs-literal">null</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 运行函数</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> handler = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><code class="hljs javascript">      binding.value(e)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 添加事件监听器</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'mousedown'</span>, start)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'touchstart'</span>, start)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 取消计时器</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'click'</span>, cancel)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'mouseout'</span>, cancel)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'touchend'</span>, cancel)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'touchcancel'</span>, cancel)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 当传进来的值更新的时候触发</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><code class="hljs javascript">  componentUpdated(el, &#123; value &#125;) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.$value = value</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 指令与元素解绑的时候，移除事件绑定</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><code class="hljs javascript">  unbind(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.removeEventListener(<span class="hljs-string">'click'</span>, el.handler)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> longpress</code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;button v-longpress&#x3D;&quot;longpress&quot;&gt;长按&lt;&#x2F;button&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs vue"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt; </code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs vue">export default &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs vue">  methods: &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs vue">    longpress () &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs vue">      alert(&#39;长按指令生效&#39;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs vue">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs vue">  &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs vue">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;script&gt;</code></pre></td></tr></table></figure></p>
+<h2 id="v-debounce"><a href="#v-debounce" class="headerlink" title="v-debounce"></a>v-debounce</h2><p>防止按钮在短时间内被多次点击，使用防抖函数限制规定时间内只能点击一次</p>
+<ol>
+<li>定义一个延迟执行的方法，如果在延迟时间内再调用该方法，则重新计算执行时间。</li>
+<li>将时间绑定在 click 方法上。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> debounce = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">inserted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el, binding</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> timer</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.addEventListener(<span class="hljs-string">'keyup'</span>, () =&gt; &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (timer) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">        clearTimeout(timer)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">      timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">        binding.value()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;, <span class="hljs-number">1000</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> debounce</code></pre></td></tr></table></figure>
+<p> 使用：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;button v-debounce&#x3D;&quot;debounceClick&quot;&gt;防抖&lt;&#x2F;button&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs vue"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt; </code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs vue">export default &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs vue">  methods: &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs vue">    debounceClick () &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs vue">      console.log(&#39;只触发一次&#39;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs vue">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs vue">  &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs vue">&#125; </code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;script&gt;</code></pre></td></tr></table></figure></p>
+<h2 id="v-emoji"><a href="#v-emoji" class="headerlink" title="v-emoji"></a>v-emoji</h2><p> 开发中遇到的表单输入，往往会有对输入内容的限制，比如不能输入表情和特殊字符，只能输入数字或字母等。<br> 根据正则表达式，设计自定义处理表单输入规则的指令，下面以禁止输入表情和特殊字符为例。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> findEle = <span class="hljs-function">(<span class="hljs-params">parent, type</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">return</span> parent.tagName.toLowerCase() === type ? parent : parent.querySelector(type)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> trigger = <span class="hljs-function">(<span class="hljs-params">el, type</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">const</span> e = <span class="hljs-built_in">document</span>.createEvent(<span class="hljs-string">'HTMLEvents'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">  e.initEvent(type, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">  el.dispatchEvent(e)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> emoji = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">bind</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el, binding, vnode</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-comment">// 正则规则可根据需求自定义</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">var</span> regRule = <span class="hljs-regexp">/[^u4E00-u9FA5|d|a-zA-Z|rns,.?!，。？！…—&amp;$=()-+/*&#123;&#125;[]]|s/g</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> $inp = findEle(el, <span class="hljs-string">'input'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.$inp = $inp</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript">    $inp.handle = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">let</span> val = $inp.value</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">      $inp.value = val.replace(regRule, <span class="hljs-string">''</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">      trigger($inp, <span class="hljs-string">'input'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript">    $inp.addEventListener(<span class="hljs-string">'keyup'</span>, $inp.handle)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">unbind</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.$inp.removeEventListener(<span class="hljs-string">'keyup'</span>, el.$inp.handle)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> emoji</code></pre></td></tr></table></figure>
+<p> 使用：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;note&quot; v-emoji &#x2F;&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;template&gt;</code></pre></td></tr></table></figure></p>
+<h2 id="v-LazyLoad"><a href="#v-LazyLoad" class="headerlink" title="v-LazyLoad"></a>v-LazyLoad</h2><p> 实现一个图片懒加载指令，只加载浏览器可见区域的图片。</p>
+<ol>
+<li>图片懒加载的原理主要是判断当前图片是否到了可视区域这一核心逻辑实现的</li>
+<li>拿到所有的图片 Dom ，遍历每个图片判断当前图片是否到了可视区范围内</li>
+<li><p>如果到了就设置图片的 src 属性，否则显示默认图片</p>
+<p>图片懒加载有两种方式可以实现，一是绑定 srcoll 事件进行监听，<br>二是使用 IntersectionObserver 判断图片是否到了可视区域，但是有浏览器兼容性问题。</p>
+<p>下面封装一个懒加载指令兼容两种方法，判断浏览器是否支持 IntersectionObserver API，<br>如果支持就使用 IntersectionObserver 实现懒加载，否则则使用 srcoll 事件监听 + 节流的方法实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> LazyLoad = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// install方法</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  install(Vue, options) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> defaultSrc = options.default</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">    Vue.directive(<span class="hljs-string">'lazy'</span>, &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">      bind(el, binding) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">        LazyLoad.init(el, binding.value, defaultSrc)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">      inserted(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">if</span> (IntersectionObserver) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">          LazyLoad.observe(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125; <span class="hljs-keyword">else</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">          LazyLoad.listenerScroll(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 初始化</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">  init(el, val, def) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.setAttribute(<span class="hljs-string">'data-src'</span>, val)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.setAttribute(<span class="hljs-string">'src'</span>, def)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 利用IntersectionObserver监听el</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">  observe(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">var</span> io = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function">(<span class="hljs-params">entries</span>) =&gt;</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">const</span> realSrc = el.dataset.src</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (entries[<span class="hljs-number">0</span>].isIntersecting) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">if</span> (realSrc) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><code class="hljs javascript">          el.src = realSrc</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><code class="hljs javascript">          el.removeAttribute(<span class="hljs-string">'data-src'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><code class="hljs javascript">    io.observe(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 监听scroll事件</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><code class="hljs javascript">  listenerScroll(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> handler = LazyLoad.throttle(LazyLoad.load, <span class="hljs-number">300</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><code class="hljs javascript">    LazyLoad.load(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'scroll'</span>, () =&gt; &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><code class="hljs javascript">      handler(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 加载真实图片</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><code class="hljs javascript">  load(el) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> windowHeight = <span class="hljs-built_in">document</span>.documentElement.clientHeight</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> elTop = el.getBoundingClientRect().top</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> elBtm = el.getBoundingClientRect().bottom</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">const</span> realSrc = el.dataset.src</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">if</span> (elTop - windowHeight &lt; <span class="hljs-number">0</span> &amp;&amp; elBtm &gt; <span class="hljs-number">0</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (realSrc) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><code class="hljs javascript">        el.src = realSrc</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><code class="hljs javascript">        el.removeAttribute(<span class="hljs-string">'data-src'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 节流</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><code class="hljs javascript">  throttle(fn, delay) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> timer</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">let</span> prevTime</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">const</span> currTime = <span class="hljs-built_in">Date</span>.now()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">this</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (!prevTime) prevTime = currTime</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><code class="hljs javascript">      clearTimeout(timer)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">if</span> (currTime - prevTime &gt; delay) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><code class="hljs javascript">        prevTime = currTime</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><code class="hljs javascript">        fn.apply(context, args)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><code class="hljs javascript">        clearTimeout(timer)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">return</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><code class="hljs javascript">      timer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><code class="hljs javascript">        prevTime = <span class="hljs-built_in">Date</span>.now()</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><code class="hljs javascript">        timer = <span class="hljs-literal">null</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><code class="hljs javascript">        fn.apply(context, args)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;, delay)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> LazyLoad</code></pre></td></tr></table></figure>
+<p>使用： 将组件内 标签的 src 换成 v-LazyLoad</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;img v-LazyLoad&#x3D;&quot;xxx.jpg&quot; &#x2F;&gt;</code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="v-permission"><a href="#v-permission" class="headerlink" title="v-permission"></a>v-permission</h2><p> 自定义一个权限指令，对需要权限判断的 Dom 进行显示隐藏。</p>
+<ol>
+<li>获取一个权限数组数据</li>
+<li><p>判断用户的权限是否在这个数组内，如果是则显示，否则则移除 Dom</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Store <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> permission = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-attr">inserted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el, binding</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">const</span> value = binding.value;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">if</span> (value) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">            <span class="hljs-keyword">const</span> permission = Store.getters.permission;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">            <span class="hljs-keyword">if</span> (!permission.includes(value)) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">                el.parentNode &amp;&amp; el.parentNode.removeChild(el)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">            &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> permission</code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;div class&#x3D;&quot;btns&quot;&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;!-- 显示 --&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;button v-permission&#x3D;&quot;&#39;admin:user:edit&#39;&quot;&gt;编辑用户&lt;&#x2F;button&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;!-- 不显示 --&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;button v-permission&#x3D;&quot;&#39;admin:user:destroy&#39;&quot;&gt;删除用户&lt;&#x2F;button&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;div&gt;</code></pre></td></tr></table></figure></p>
+<h2 id="vue-waterMarker"><a href="#vue-waterMarker" class="headerlink" title="vue-waterMarker"></a>vue-waterMarker</h2><p>给整个页面添加背景水印</p>
+<ol>
+<li>使用 canvas 特性生成 base64 格式的图片文件，设置其字体大小，颜色等。</li>
+<li>将其设置为背景图片，从而实现页面或组件水印效果</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addWaterMarker</span>(<span class="hljs-params">str, parentNode, font, textColor</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">// 水印文字，父元素，字体，文字颜色</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">var</span> can = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'canvas'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">  parentNode.appendChild(can)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">  can.width = <span class="hljs-number">200</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">  can.height = <span class="hljs-number">150</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">  can.style.display = <span class="hljs-string">'none'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-keyword">var</span> cans = can.getContext(<span class="hljs-string">'2d'</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.rotate((<span class="hljs-number">-20</span> * <span class="hljs-built_in">Math</span>.PI) / <span class="hljs-number">180</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.font = font || <span class="hljs-string">'16px Microsoft JhengHei'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.fillStyle = textColor || <span class="hljs-string">'rgba(180, 180, 180, 0.3)'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.textAlign = <span class="hljs-string">'left'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.textBaseline = <span class="hljs-string">'Middle'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">  cans.fillText(str, can.width / <span class="hljs-number">10</span>, can.height / <span class="hljs-number">2</span>)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">  parentNode.style.backgroundImage = <span class="hljs-string">'url('</span> + can.toDataURL(<span class="hljs-string">'image/png'</span>) + <span class="hljs-string">')'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> waterMarker = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">bind</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el, binding</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript">    addWaterMarker(binding.value.text, el, binding.value.font, binding.value.textColor)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> waterMarker</code></pre></td></tr></table></figure>
+<p>使用:设置水印文案，颜色，字体大小即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs vue">  &lt;div v-waterMarker&#x3D;&quot;&#123;text:&#39;版权所有&#39;,textColor:&#39;rgba(180, 180, 180, 0.4)&#39;&#125;&quot;&gt;&lt;&#x2F;div&gt;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs vue">&lt;&#x2F;template&gt;</code></pre></td></tr></table></figure>
+<h2 id="v-draggable"><a href="#v-draggable" class="headerlink" title="v-draggable"></a>v-draggable</h2><p> 实现一个拖拽指令，可在页面可视区域任意拖拽元素。</p>
+<ol>
+<li>设置需要拖拽的元素为相对定位，其父元素为绝对定位。</li>
+<li>鼠标按下(onmousedown)时记录目标元素当前的 left 和 top 值。</li>
+<li>鼠标移动(onmousemove)时计算每次移动的横向距离和纵向距离的变化值，并改变元素的 left 和 top 值</li>
+<li>鼠标松开(onmouseup)时完成一次拖拽</li>
+</ol>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> draggable = &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-attr">inserted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.style.cursor = <span class="hljs-string">'move'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    el.onmousedown = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">let</span> disx = e.pageX - el.offsetLeft</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-keyword">let</span> disy = e.pageY - el.offsetTop</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-built_in">document</span>.onmousemove = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">let</span> x = e.pageX - disx</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">let</span> y = e.pageY - disy</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">let</span> maxX = <span class="hljs-built_in">document</span>.body.clientWidth - <span class="hljs-built_in">parseInt</span>(<span class="hljs-built_in">window</span>.getComputedStyle(el).width)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">let</span> maxY = <span class="hljs-built_in">document</span>.body.clientHeight - <span class="hljs-built_in">parseInt</span>(<span class="hljs-built_in">window</span>.getComputedStyle(el).height)</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">          x = <span class="hljs-number">0</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x &gt; maxX) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">          x = maxX</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">0</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><code class="hljs javascript">          y = <span class="hljs-number">0</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (y &gt; maxY) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><code class="hljs javascript">          y = maxY</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><code class="hljs javascript">        &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><code class="hljs javascript">        el.style.left = x + <span class="hljs-string">'px'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><code class="hljs javascript">        el.style.top = y + <span class="hljs-string">'px'</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><code class="hljs javascript">      <span class="hljs-built_in">document</span>.onmouseup = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-built_in">document</span>.onmousemove = <span class="hljs-built_in">document</span>.onmouseup = <span class="hljs-literal">null</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><code class="hljs javascript">      &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><code class="hljs javascript">  &#125;,</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> draggable</code></pre></td></tr></table></figure>
+<p>使用: </p>
+<pre><code class="lang-vue">&lt;template&gt;
+  &lt;div class=&quot;el-dialog&quot; v-draggable&gt;&lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<p>参考文章：<br>作者：lzg9527   链接：<a href="https://segmentfault.com/a/1190000038475001" target="_blank" rel="noopener">https://segmentfault.com/a/1190000038475001</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/22/BFC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">BFC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/10/vue%E4%B8%AD%E4%BD%BF%E7%94%A8svg%E5%9B%BE%E6%A0%87/">
+                        <span class="hidden-mobile">vue中使用svg图标</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"23105ea7560026277d52","clientSecret":"4b818ae7b29ee9dd13a9f17d0709986966353d60","repo":"blog-comments","owner":"TheFirework","admin":["TheFirework"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          { id: '19b6c19842b7702519835a6d3d9fa575' }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      jQuery('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      jQuery('#modalSearch').on('shown.bs.modal', function() {
+        jQuery('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
