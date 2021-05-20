@@ -190,6 +190,64 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/05/20/pre-compilation/" target="_self">
+          JavaScript-预编译
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/20/pre-compilation/" target="_self">
+          
+          
+            
+          
+          什么是预编译？预编译发生在函数作用域创建的阶段在函数执行之前。
+
+创建AO对象（Active Object）
+查找函数形参以及函数内部的变量声明，形参名及变量名作为AO对象的属性，值为 undefined
+实参和形参相统一，实参值赋给形参
+查找函数声明，函数名作为AO对象的属性，如果函数名称和变量名称相同时会覆盖变量声明
+
+函数、形参、变量的优先级别：函数 &gt; 形参 &gt; 变量
+1fun
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-20 09:55" pubdate>
+              2021-05-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
           JavaScript中精度问题以及解决方案
         </a>
@@ -706,67 +764,6 @@ Promise对象有三种状态：pending(进行中)，fulfilled
               <a href="/tags/ES6/">ES6</a>
             
               <a href="/tags/Promise/">Promise</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter状态管理之ScopedModel">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          Flutter状态管理之ScopedModel
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          
-          
-            
-          
-          简介ScopedModel 允许将数据模型从父Widget传递到后代，会在模型更新时重新渲染使用该模型的所有子项。
-安装依赖在pubspec.yml中添加scoped_model的依赖。
-
-scoped_model: ^1.0.1
-
-创建模型1class CounterModel extends Model &#123;2  int _count = 0;3  int get count =&gt
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-06 10:43" pubdate>
-              2020-06-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Flutter/">Flutter</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">状态管理</a>
             
           </div>
         
