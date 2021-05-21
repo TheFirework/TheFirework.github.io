@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      442 字
+      498 字
     </span>
   
 
@@ -203,7 +203,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      7
        分钟
     </span>
   
@@ -237,13 +237,20 @@
             
             <div class="markdown-body">
               <h1 id="什么是预编译？"><a href="#什么是预编译？" class="headerlink" title="什么是预编译？"></a>什么是预编译？</h1><p>预编译发生在函数作用域创建的阶段在函数执行之前。</p>
+<p>函数、形参、变量的优先级别：<br>函数 &gt; 形参 &gt; 变量</p>
+<p><strong>全局作用域预编译</strong></p>
+<ol>
+<li>创建GO对象（Global Object）</li>
+<li>查找变量声明，将变量名作为GO对象的属性名，只为 undefined</li>
+<li>查找函数声明，值为函数体</li>
+</ol>
+<p><strong>函数作用域预编译</strong></p>
 <ol>
 <li>创建AO对象（Active Object）</li>
 <li>查找函数形参以及函数内部的变量声明，形参名及变量名作为AO对象的属性，值为 undefined</li>
 <li>实参和形参相统一，实参值赋给形参</li>
 <li>查找函数声明，函数名作为AO对象的属性，如果函数名称和变量名称相同时会覆盖变量声明</li>
 </ol>
-<p>函数、形参、变量的优先级别：<br>函数 &gt; 形参 &gt; 变量</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a</span>)</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(a,<span class="hljs-number">1</span>);  <span class="hljs-comment">// ƒ a () &#123;&#125; 1</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">var</span> a = <span class="hljs-number">2222</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(a,<span class="hljs-number">2</span>); <span class="hljs-comment">// 2222 2</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span> (<span class="hljs-params"></span>) </span>&#123;&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(a,<span class="hljs-number">3</span>); <span class="hljs-comment">// 2222 3</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">fn(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></td></tr></table></figure>
 <h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, c</span>) </span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(a);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">var</span> a = <span class="hljs-number">123</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(a);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(c);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>&#123; &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span>) &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs javascript">        <span class="hljs-keyword">var</span> d = <span class="hljs-number">678</span></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><code class="hljs javascript">    &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(d);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(b);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(b);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>&#123; &#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-built_in">console</span>.log(c);</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><code class="hljs javascript">&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><code class="hljs javascript"></code></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><code class="hljs javascript">fn(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</code></pre></td></tr></table></figure>
 <p>第一阶段：创建 AO 对象，查找函数形参以及函数内部的变量声明,实参和形参相统一，如果没有传递实参，那么值为 undefined</p>

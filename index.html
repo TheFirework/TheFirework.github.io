@@ -190,6 +190,64 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/05/21/JavasScripScope/" target="_self">
+          理解JavaScript的作用域
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/21/JavasScripScope/" target="_self">
+          
+          
+            
+          
+          什么是作用域简单来说作用域就是变量与函数的访问范围,用于规定变量和函数是否可访问。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。
+全局作用域在代码中任何地方都可以访问到的对象拥有全局作用域。
+
+在script标签中声明的变量和函数
+全局对象 window，由浏览器创建
+未定义直接赋值的变量
+在全局作用域声明的函数和变量会作为 window 对象的属性和方法保存
+
+函数作用域声
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 16:23" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/05/21/Image-Lazy-Loading/" target="_self">
           原生JavaScript实现图片懒加载
         </a>
@@ -310,14 +368,17 @@
             
           
           什么是预编译？预编译发生在函数作用域创建的阶段在函数执行之前。
+函数、形参、变量的优先级别：函数 &gt; 形参 &gt; 变量
+全局作用域预编译
+
+创建GO对象（Global Object）
+查找变量声明，将变量名作为GO对象的属性名，只为 undefined
+查找函数声明，值为函数体
+
+函数作用域预编译
 
 创建AO对象（Active Object）
-查找函数形参以及函数内部的变量声明，形参名及变量名作为AO对象的属性，值为 undefined
-实参和形参相统一，实参值赋给形参
-查找函数声明，函数名作为AO对象的属性，如果函数名称和变量名称相同时会覆盖变量声明
-
-函数、形参、变量的优先级别：函数 &gt; 形参 &gt; 变量
-1fun
+查找函数形参以及函数内部的变量声明，形参名及
         </a>
       </p>
 
@@ -679,80 +740,6 @@ filters1export const formatRichText &#x3D; (html) &#x3D;&gt; &#123;2	let newCont
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E8%B7%A8%E9%A1%B5%E9%9D%A2/">跨页面</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/16/uniapp%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_self">
-          <img src="/img/default/uniapp.png" srcset="/img/loading.gif" lazyload alt="uniapp的生命周期">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/07/16/uniapp%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_self">
-          uniapp的生命周期
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/16/uniapp%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_self">
-          
-          
-            
-          
-          介绍uni-app是一个使用Vue.js开发所有前端应用的框架。开发一次，多端使用。本文的目的是了解生命周期函数的执行顺序，所以只会接触一部分周期函数。想了解更全面的生命周期函数请前往官方网站。
-生命周期类型uni-app 的生命周期分为三类：
-
-应用生命周期
-页面生命周期
-组件生命周期
-
-应用生命周期应用生命周期仅可在App.vue中监听，在其它页面监听无效。
-
-
-
-
-函数名
-说明
-
-
-
-
-on
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-16 14:48" pubdate>
-              2020-07-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a>
             
           </div>
         
