@@ -241,10 +241,12 @@
 <li>将元素与动画进行绑定,设置动画持续时间</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-attribute">height</span>:<span class="hljs-number">100px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-attribute">background</span>:red;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-attribute">animation</span>:change <span class="hljs-number">5s</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs css">&#125;</code></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>创建 <code>@keyframes</code> 动画规则</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs css">@<span class="hljs-keyword">keyframes</span> change</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs css">&#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-selector-tag">from</span> &#123;<span class="hljs-attribute">background</span>:red;&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-selector-tag">to</span> &#123;<span class="hljs-attribute">background</span>:green;&#125;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs css">&#125;</code></pre></td></tr></table></figure>
+
 <p>这样一个简单的改变div颜色的动画就完成了。</p>
 <h1 id="animation-属性"><a href="#animation-属性" class="headerlink" title="animation 属性"></a>animation 属性</h1><blockquote>
 <p>animation: name duration timing-function delay iteration-count direction fill-mode play-state;</p>

@@ -237,7 +237,7 @@
             
             <div class="markdown-body">
               <h1 id="CSS-盒子模型"><a href="#CSS-盒子模型" class="headerlink" title="CSS 盒子模型"></a>CSS 盒子模型</h1><p>每个<code>HTML</code>元素都是盒子。</p>
-<p><img src="/.io//post/boxmodel.png" srcset="/img/loading.gif" lazyload alt="盒子模型"></p>
+<p><img src="/img/post/boxmodel.png" srcset="/img/loading.gif" lazyload alt="盒子模型"></p>
 <p>如图一个盒子的组成部分:</p>
 <ul>
 <li>Content(内容) - 盒子的内容，显示的文字和图片。</li>
@@ -249,13 +249,16 @@
 <p>低版本IE盒子模型：宽度=内容宽度（content+border+padding）+ margin</p>
 <p>这里我们指定了一个<code>div</code>的内容区域宽度为<code>300px</code>,一个完整的元素大小还包括内边距、外边距、边框</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">border</span>: <span class="hljs-number">25px</span> solid red;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">25px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">margin</span>: <span class="hljs-number">25px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs css">&#125;</code></pre></td></tr></table></figure>
+
 <p>总元素宽度为： 300px(内容宽度) + 50px(左 + 右padding) + 50px(左 + 右border) + 50px(左 + 右margin) = 450px</p>
 <p>总元素高度为：42px(内容高度) + 50px(左 + 右padding) + 50px(左 + 右border) + 50px(左 + 右margin) = 192px</p>
 <h1 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h1><p>用来控制元素的盒子模型的解析模式，默认为content-box</p>
 <h2 id="context-box"><a href="#context-box" class="headerlink" title="context-box"></a>context-box</h2><p>W3C的标准盒子模型，设置元素的 height/width 属性指的是content部分的高/宽</p>
 <h2 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h2><p>IE传统盒子模型。设置元素的height/width属性指的是border + padding + content部分的高/宽</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">background-color</span>: lightgrey;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">border</span>: <span class="hljs-number">25px</span> solid red;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">25px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><code class="hljs css">    <span class="hljs-attribute">margin</span>: <span class="hljs-number">25px</span>;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><code class="hljs css">	<span class="hljs-attribute">box-sizing</span>:border-box;</code></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><code class="hljs css">&#125;</code></pre></td></tr></table></figure>
-<p><img src="/.io//post/boxsizing.png" srcset="/img/loading.gif" lazyload alt="盒子模型"></p>
+
+
+<p><img src="/img/post/boxsizing.png" srcset="/img/loading.gif" lazyload alt="盒子模型"></p>
 <p>如图，我们设置了<code>box-sizing:border-box;</code>,内容的宽度变成了<code>200px</code>，高度变成了<code>63px</code>。</p>
 <p>总元素宽度为：200px(content + padding + border) + 50px(左 + 右margin) = 300px</p>
 <p>总元素高度为：63 px(content + padding + border) + 50px(左 + 右margin) = 163px</p>

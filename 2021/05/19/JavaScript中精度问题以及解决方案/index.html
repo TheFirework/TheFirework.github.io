@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      225 字
+      226 字
     </span>
   
 
@@ -237,8 +237,12 @@
             
             <div class="markdown-body">
               <p>JavaScript 中使用的是 64 位双精度浮点数来存储数字。可以表示的数字的绝对值范围大约是：-1.79E+308 ~ +1.79E+308。超出这个范围的数就不一定能准确表示，就会产生精度问题。而计算机计算时是二进制，技术完成转换为十进制就超出了范围。</p>
-<h1 id="JavaScript中精度丢失的经典问题"><a href="#JavaScript中精度丢失的经典问题" class="headerlink" title="JavaScript中精度丢失的经典问题"></a>JavaScript中精度丢失的经典问题</h1><p>浮点精度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span> === <span class="hljs-number">0.3</span>  <span class="hljs-comment">// false</span></code></pre></td></tr></table></figure></p>
-<p>大数精度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">9999999999999999</span> == <span class="hljs-number">10000000000000001</span></code></pre></td></tr></table></figure></p>
+<h1 id="JavaScript中精度丢失的经典问题"><a href="#JavaScript中精度丢失的经典问题" class="headerlink" title="JavaScript中精度丢失的经典问题"></a>JavaScript中精度丢失的经典问题</h1><p>浮点精度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span> === <span class="hljs-number">0.3</span>  <span class="hljs-comment">// false</span></code></pre></td></tr></table></figure>
+
+<p>大数精度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">9999999999999999</span> == <span class="hljs-number">10000000000000001</span></code></pre></td></tr></table></figure>
+
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将浮点数乘以10^n使其成为整数,计算后再将结果除以10^n,n为他们之中最大的小数位。比如0.1 + 0.2，可以转化为(0.1<em>10+0.2</em>10)/10。不过如果小数位太多可能造成大数精度问题，不过一般不会用到超大整数。这里只针对一般类似电商使用的小金额。</p>
 
             </div>
