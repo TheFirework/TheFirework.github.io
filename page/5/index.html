@@ -187,6 +187,63 @@
   <div class="row mx-auto index-card">
     
     
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/01/09/Javascipt%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="Javascipt数组去重">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/09/Javascipt%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" target="_self">
+          Javascipt数组去重
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/01/09/Javascipt%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" target="_self">
+          
+          
+            
+          
+          一、利用ES6 Set去重1function unique(arr) &#123;2   return Array.from(new Set(arr));3 &#125;
+二、利用for嵌套for，然后splice去重1function unique(arr) &#123;2  for (var i = 0; i &lt; arr.length; i++) &#123;3    for (var 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-09 17:01" pubdate>
+              2020-01-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Array/">Array</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
@@ -316,8 +373,7 @@
 
 数组解构赋值按照索引位置匹配
 常用示例1let a,b;2[a,b] = [1,2];3console.log(a,b);         // 1 ,2
-
-1let a,b,rest;2[a,b,
+1let a,b,rest;2[a,b,.
         </a>
       </p>
 
@@ -375,10 +431,9 @@
           
           在JavaScript中获取对象属性，我们一般用点或中括号的方法。
 通过.的方式1var obj = &#123;2  name:'张山'3&#125;4console.log(obj.name);  // 张山
-
 .运算符：使用前提是右侧必须是一个属性名称命名的标识符。
 如果我们恰好遇见对象中的属性刚好不符合标识符的规范，就不能用.来访问。就会保语法错误。
-1let obj = &#123;"1
+1let obj = &#123;"1"
         </a>
       </p>
 
@@ -495,10 +550,8 @@
           
           定义JavaScript 函数是执行特定目的的代码块。如果一个函数没有return语句,则它默认返回undefined。
 1function f(形参1,形参2) &#123;2  //执行的代码3&#125;4f('实参1','实参2');
-
 函数声明 - 命名函数1function fn() &#123;2  3&#125;
-
-函数表达式1var x = function(a,b)&#123;
+函数表达式1var x = function(a,b)&#123;2 
         </a>
       </p>
 
@@ -709,66 +762,6 @@
               <a href="/tags/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">变量提升</a>
             
               <a href="/tags/%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">函数提升</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/12/09/JavaScript%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" target="_self">
-          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript中的执行上下文">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/12/09/JavaScript%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" target="_self">
-          JavaScript中的执行上下文
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/12/09/JavaScript%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" target="_self">
-          
-          
-            
-          
-          概念当函数执行时，会创建一个执行上下文的内部空间(可以理解为作用域)。 Javascript 代码都是在执行上下文中运行。  
-执行上下文的类型
-全局执行上下文 - 默认的上下文，任何不在函数内部的代码都在全局上下文中。它会创建一个全局的window对象，设置this的值等于这个全局对象。一个程序中自只会有一个全局执行上下文。
-函数执行上下文 - 当函数被调用时，就会为该函数创建一个新的上下文。
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-12-09 14:27" pubdate>
-              2019-12-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</a>
             
           </div>
         
