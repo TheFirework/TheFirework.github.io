@@ -188,6 +188,62 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/01/09/Javascipt%E6%8B%B7%E8%B4%9D%E6%95%B0%E7%BB%84/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript拷贝数组">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/09/Javascipt%E6%8B%B7%E8%B4%9D%E6%95%B0%E7%BB%84/" target="_self">
+          JavaScript拷贝数组
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/01/09/Javascipt%E6%8B%B7%E8%B4%9D%E6%95%B0%E7%BB%84/" target="_self">
+          
+          
+            
+          
+          1.使用Array.slice方法1const numbers = [1, 2, 3, 4, 5]23const copy = numbers.slice()4copy.push(6); // 添加新项以证明不会修改原始数组56console.log(copy);7console.log(numbers);89// 输出10// [1, 2, 3, 4, 5, 6]11// [1, 2, 3, 4
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-09 17:12" pubdate>
+              2020-01-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Array/">Array</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/01/09/Javascipt%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" target="_self">
           <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="Javascipt数组去重">
         </a>
@@ -373,7 +429,8 @@
 
 数组解构赋值按照索引位置匹配
 常用示例1let a,b;2[a,b] = [1,2];3console.log(a,b);         // 1 ,2
-1let a,b,rest;2[a,b,.
+
+1let a,b,rest;2[a,b,
         </a>
       </p>
 
@@ -431,9 +488,10 @@
           
           在JavaScript中获取对象属性，我们一般用点或中括号的方法。
 通过.的方式1var obj = &#123;2  name:'张山'3&#125;4console.log(obj.name);  // 张山
+
 .运算符：使用前提是右侧必须是一个属性名称命名的标识符。
 如果我们恰好遇见对象中的属性刚好不符合标识符的规范，就不能用.来访问。就会保语法错误。
-1let obj = &#123;"1"
+1let obj = &#123;"1
         </a>
       </p>
 
@@ -550,8 +608,10 @@
           
           定义JavaScript 函数是执行特定目的的代码块。如果一个函数没有return语句,则它默认返回undefined。
 1function f(形参1,形参2) &#123;2  //执行的代码3&#125;4f('实参1','实参2');
+
 函数声明 - 命名函数1function fn() &#123;2  3&#125;
-函数表达式1var x = function(a,b)&#123;2 
+
+函数表达式1var x = function(a,b)&#123;
         </a>
       </p>
 
@@ -700,68 +760,6 @@
               <a href="/tags/apply/">apply</a>
             
               <a href="/tags/bind/">bind</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/12/09/JavaScript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" target="_self">
-          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript-变量提升与函数提升">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/12/09/JavaScript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" target="_self">
-          JavaScript-变量提升与函数提升
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/12/09/JavaScript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" target="_self">
-          
-          
-            
-          
-          前言什么是变量提升？变量提升是对JavaScript(hoisting)执行上下文的一种认识。不管变量是在作用域的那个地方声明的，都会提升到当前作用域的最顶部。JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。 
-预解析预解析 -&gt;  变量提升、函数提升(声明变量和函数) -&gt; 执行代码 、执行赋值变量提升和函数提升不过是预解析的执行过程。 
-1// 解析之前
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-12-09 15:01" pubdate>
-              2019-12-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%8F%98%E9%87%8F/">变量</a>
-            
-              <a href="/tags/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">变量提升</a>
-            
-              <a href="/tags/%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">函数提升</a>
             
           </div>
         
