@@ -693,12 +693,12 @@ JavaScript中精度丢失的经典问题浮点精度
           
             
           
-          BFC是什么？块格式化上下文（Block Formatting Context，BFC）,是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。呃，完全无法理解。简单来说就是BFC内部元素变化不会影响外部元素。
-触发BFC的常见情况有如下:
-
+          BFC 是什么？块格式化上下文（Block Formatting Context，BFC）,是一个独立的块级渲染区域，只有块级盒子参与。内部元素变化不会影响外部元素。
+如何创建 BFC
 float 的值不为 none
-overflow 的值为 auto、scroll、hidden
-display 的值为 table-cell、ta
+overflow 的值为 auto、scroll、hidden (推荐使用)
+display 的值为 table-cell、table-caption、inline-block
+po
         </a>
       </p>
 
