@@ -187,6 +187,177 @@
   <div class="row mx-auto index-card">
     
     
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/20/pre-compilation/" target="_self">
+          JavaScript-预编译
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/20/pre-compilation/" target="_self">
+          
+          
+            
+          
+          什么是预编译？预编译发生在函数作用域创建的阶段在函数执行之前。
+函数、形参、变量的优先级别：函数 &gt; 形参 &gt; 变量
+全局作用域预编译
+
+创建GO对象（Global Object）
+查找变量声明，将变量名作为GO对象的属性名，只为 undefined
+查找函数声明，值为函数体
+
+函数作用域预编译
+
+创建AO对象（Active Object）
+查找函数形参以及函数内部的变量声明，形参名及
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-20 09:55" pubdate>
+              2021-05-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+          JavaScript中精度问题以及解决方案
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+          
+          
+            
+          
+          JavaScript 中使用的是 64 位双精度浮点数来存储数字。可以表示的数字的绝对值范围大约是：-1.79E+308 ~ +1.79E+308。超出这个范围的数就不一定能准确表示，就会产生精度问题。而计算机计算时是二进制，技术完成转换为十进制就超出了范围。
+JavaScript中精度丢失的经典问题浮点精度
+10.1+0.2 === 0.3  // false
+
+大数精度
+19999999999
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-19 14:18" pubdate>
+              2021-05-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Function/">Function</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/12/22/BFC/" target="_self">
+          BFC
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/22/BFC/" target="_self">
+          
+          
+            
+          
+          BFC 是什么？块格式化上下文（Block Formatting Context，BFC）,是一个独立的块级渲染区域，只有块级盒子参与。内部元素变化不会影响外部元素。
+如何创建 BFC
+float 的值不为 none
+overflow 的值为 auto、scroll、hidden (推荐使用)
+display 的值为 table-cell、table-caption、inline-block
+po
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-22 17:38" pubdate>
+              2020-12-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CSS/">CSS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BFC/">BFC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/12/19/Vue%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/" target="_self">
           <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="Vue自定义指令">
@@ -608,188 +779,11 @@ Promise对象有三种状态：pending(进行中)，fulfilled
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter状态管理之ScopedModel">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          Flutter状态管理之ScopedModel
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/06/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BScopedModel/" target="_self">
-          
-          
-            
-          
-          简介ScopedModel 允许将数据模型从父Widget传递到后代，会在模型更新时重新渲染使用该模型的所有子项。
-安装依赖在pubspec.yml中添加scoped_model的依赖。
-
-scoped_model: ^1.0.1
-
-创建模型1class CounterModel extends Model &#123;2  int _count = 0;3  int get count =&gt
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-06 10:43" pubdate>
-              2020-06-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Flutter/">Flutter</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">状态管理</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
-          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter状态管理之InheritedWidget">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
-          Flutter状态管理之InheritedWidget
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/05/Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B9%8BInheritedWidget/" target="_self">
-          
-          
-            
-          
-          1.创建数据模型 CounterModel1class CounterModel &#123;2  final int count;3  const CounterModel(this.count);4&#125;
-
-2.创建 InheritedWidget1class CounterInherited extends InheritedWidget &#123;2  Widget child;3
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-05 16:18" pubdate>
-              2020-06-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Flutter/">Flutter</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">状态管理</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
-          <img src="/img/default/flutter_default.png" srcset="/img/loading.gif" lazyload alt="Flutter应用权限配置">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
-          Flutter应用权限配置
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/01/Flutter%E5%BA%94%E7%94%A8%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE/" target="_self">
-          
-          
-            
-          
-          配置文件 Android1android\app\src\main\AndroidManifest.xml2android\app\src\profile\AndroidManifest.xml
-
-权限列表 Android1&lt;!-- 允许一个程序访问CellID或WiFi热点来获取粗略的位置 --&gt;2&lt;uses-permission android:name="android.p
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-01 11:06" pubdate>
-              2020-06-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Flutter/">Flutter</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Flutter/">Flutter</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

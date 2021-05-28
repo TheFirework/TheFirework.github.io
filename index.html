@@ -190,6 +190,174 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/05/28/%E7%80%91%E5%B8%83%E6%B5%81/" target="_self">
+          瀑布流实现
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/%E7%80%91%E5%B8%83%E6%B5%81/" target="_self">
+          
+          
+            
+          
+          瀑布流原理
+设置图片宽度一致
+根据浏览器宽度以及每列宽度计算处列表数
+当图片加载完成，所有的图片依此放置在高度最小的列数下面
+
+1&lt;!DOCTYPE html&gt;2&lt;html lang="en"&gt;3  &lt;head&gt;4    &lt;meta charset="UTF-8" /&gt;5    &lt;meta name="viewport" content="wi
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 15:18" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/HTML/">HTML</a>
+            
+              <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/extend/" target="_self">
+          JavaScript继承的实现方式
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/extend/" target="_self">
+          
+          
+            
+          
+          原型链的继承原理让子类的原型对象指向父类的实例，当子类实例找不到对应的属性和方法时，会沿着原型链往上找。
+1function Parent() &#123;2    this.name = ['张三']3&#125;45Parent.prototype.getName = function () &#123;6    return this.name7&#125;89function Child(
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 13:40" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/prototype/">prototype</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/call-bind-apply/" target="_self">
+          call、bind、apply的理解区别以及用法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/call-bind-apply/" target="_self">
+          
+          
+            
+          
+          定义改变函数执行时上下文，改变this的指向
+改变 this 指向call 和 apply是立即执行，而bind会返回一个函数
+1let obj = &#123;2    name: "张三",3&#125;45function Child(name) &#123;6    this.name = name7&#125;89Child.prototype = &#123;10    constru
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 09:14" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/This/">This</a>
+            
+              <a href="/tags/prototype/">prototype</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/05/27/JavaScript%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" target="_self">
           JavaScript发布订阅模式
         </a>
@@ -560,182 +728,11 @@ Event Loop组成部分：
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/20/pre-compilation/" target="_self">
-          JavaScript-预编译
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/20/pre-compilation/" target="_self">
-          
-          
-            
-          
-          什么是预编译？预编译发生在函数作用域创建的阶段在函数执行之前。
-函数、形参、变量的优先级别：函数 &gt; 形参 &gt; 变量
-全局作用域预编译
-
-创建GO对象（Global Object）
-查找变量声明，将变量名作为GO对象的属性名，只为 undefined
-查找函数声明，值为函数体
-
-函数作用域预编译
-
-创建AO对象（Active Object）
-查找函数形参以及函数内部的变量声明，形参名及
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-20 09:55" pubdate>
-              2021-05-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
-          JavaScript中精度问题以及解决方案
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/19/JavaScript%E4%B8%AD%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
-          
-          
-            
-          
-          JavaScript 中使用的是 64 位双精度浮点数来存储数字。可以表示的数字的绝对值范围大约是：-1.79E+308 ~ +1.79E+308。超出这个范围的数就不一定能准确表示，就会产生精度问题。而计算机计算时是二进制，技术完成转换为十进制就超出了范围。
-JavaScript中精度丢失的经典问题浮点精度
-10.1+0.2 === 0.3  // false
-
-大数精度
-19999999999
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-19 14:18" pubdate>
-              2021-05-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Function/">Function</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/12/22/BFC/" target="_self">
-          BFC
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/12/22/BFC/" target="_self">
-          
-          
-            
-          
-          BFC 是什么？块格式化上下文（Block Formatting Context，BFC）,是一个独立的块级渲染区域，只有块级盒子参与。内部元素变化不会影响外部元素。
-如何创建 BFC
-float 的值不为 none
-overflow 的值为 auto、scroll、hidden (推荐使用)
-display 的值为 table-cell、table-caption、inline-block
-po
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-12-22 17:38" pubdate>
-              2020-12-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CSS/">CSS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/BFC/">BFC</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
