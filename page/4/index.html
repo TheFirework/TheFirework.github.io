@@ -270,9 +270,8 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
           
           安装 Laravel-mix移动文件将webpack.mix.js 和 package.json两个文件复制到ThinkPHP5项目的根目录
 安装依赖1yarn install
-
 设置路径修改webpack.mix.js文件,增加.setPublicPath(&#39;./public&#39;);
-1const mix = require('laravel-mix');2mix.js('reso
+1const mix = require('laravel-mix');2mix.js('resou
         </a>
       </p>
 
@@ -333,10 +332,8 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
             
           
           数据库迁移工具 think-migration通过composer安装1composer require topthink/think-migration=2.0.*
-
 安装完成后，在命令行下查看，就会发现新增了几个migrate和seed命令1php think
-
-1migrate2 migrate:create     Create a new migration3 migrate:rollb
+1migrate2 migrate:create     Create a new migration3 migrate:rollbac
         </a>
       </p>
 
@@ -447,9 +444,11 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
 
 
 
+
 选择器
 例子
 描述
+
 
 
 
@@ -480,7 +479,7 @@ div p
 
 子元素选择器
 div&gt;p
-选择父元素为
+选择父元
         </a>
       </p>
 
@@ -536,10 +535,9 @@ CSS3 创建动画
 
 1div&#123;2	width:100px;3	height:100px;4	background:red;5	animation:change 5s;6&#125;
 
-
 创建 @keyframes 动画规则
 
-
+1
         </a>
       </p>
 
@@ -597,8 +595,7 @@ CSS3 创建动画
           
           JavaScript事件类型浏览器中的事件有很多，在这我只记录了常用的一些事件。详细内容请前往MDN查看。
 资源事件onload 事件onload 事件会在页面或图像加载完成后立即发生。
-在 HTML 中:
-1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log(
+在 HTML 中:1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log('
         </a>
       </p>
 
@@ -650,8 +647,7 @@ CSS3 创建动画
           
           原理设置一个div宽高都为0，通过border来控制这个div的大小。然后将其中几个边background设置为transparent，即可得到三角形
 实现1&lt;div class='triangle'&gt;&lt;/div&gt;
-
-1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;
+1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;5
         </a>
       </p>
 
