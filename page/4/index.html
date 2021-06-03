@@ -188,6 +188,70 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="认识Object.defineProperty()">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          认识Object.defineProperty()
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
+          
+          
+            
+          
+          definePropertyObject.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+语法
+Object.defineProperty(obj, prop, descriptor)
+
+参数- obj 要操作的对象
+- prop 修改或新增的属性名称
+- descriptor 属性描述符
+
+属性描述符描述符不能两者同时存在，只能
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-06 09:32" pubdate>
+              2020-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Object/">Object</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/04/27/PHP%E4%B8%ADTrait%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
           <img src="/img/default/php.jpg" srcset="/img/loading.gif" lazyload alt="PHP中Trait的使用">
         </a>
@@ -270,8 +334,9 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
           
           安装 Laravel-mix移动文件将webpack.mix.js 和 package.json两个文件复制到ThinkPHP5项目的根目录
 安装依赖1yarn install
+
 设置路径修改webpack.mix.js文件,增加.setPublicPath(&#39;./public&#39;);
-1const mix = require('laravel-mix');2mix.js('resou
+1const mix = require('laravel-mix');2mix.js('reso
         </a>
       </p>
 
@@ -332,8 +397,10 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
             
           
           数据库迁移工具 think-migration通过composer安装1composer require topthink/think-migration=2.0.*
+
 安装完成后，在命令行下查看，就会发现新增了几个migrate和seed命令1php think
-1migrate2 migrate:create     Create a new migration3 migrate:rollbac
+
+1migrate2 migrate:create     Create a new migration3 migrate:rollb
         </a>
       </p>
 
@@ -444,11 +511,9 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
 
 
 
-
 选择器
 例子
 描述
-
 
 
 
@@ -479,7 +544,7 @@ div p
 
 子元素选择器
 div&gt;p
-选择父元
+选择父元素为
         </a>
       </p>
 
@@ -535,9 +600,10 @@ CSS3 创建动画
 
 1div&#123;2	width:100px;3	height:100px;4	background:red;5	animation:change 5s;6&#125;
 
+
 创建 @keyframes 动画规则
 
-1
+
         </a>
       </p>
 
@@ -595,7 +661,8 @@ CSS3 创建动画
           
           JavaScript事件类型浏览器中的事件有很多，在这我只记录了常用的一些事件。详细内容请前往MDN查看。
 资源事件onload 事件onload 事件会在页面或图像加载完成后立即发生。
-在 HTML 中:1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log('
+在 HTML 中:
+1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log(
         </a>
       </p>
 
@@ -647,7 +714,8 @@ CSS3 创建动画
           
           原理设置一个div宽高都为0，通过border来控制这个div的大小。然后将其中几个边background设置为transparent，即可得到三角形
 实现1&lt;div class='triangle'&gt;&lt;/div&gt;
-1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;5
+
+1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;
         </a>
       </p>
 
@@ -729,58 +797,6 @@ z-index: -999999999
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0/">隐藏元素</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/03/26/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" target="_self">
-          圣杯布局和双飞翼布局的理解和区别
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/03/26/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" target="_self">
-          
-          
-            
-          
-          圣杯布局和双飞翼布局作用圣杯布局和双飞翼布局的作用是一样的，就是两边顶宽然后中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
-圣杯布局三栏利用 float 和 负margin 并排，设置父容器的padding给两边的侧边栏预留位置。
-1&lt;div class="wrapper"&gt;2    &lt;div class="middle"&gt;middle&lt;/div&gt;3
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-03-26 10:06" pubdate>
-              2020-03-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CSS/">CSS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
             
           </div>
         
