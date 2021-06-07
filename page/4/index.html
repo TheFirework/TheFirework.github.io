@@ -188,6 +188,64 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript事件委托">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          JavaScript事件委托
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/06/JavaScript%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" target="_self">
+          
+          
+            
+          
+          事件委托事件委托就是把原本需要绑定在子元素上面的响应事件委托给它们的父元素或者更外层元素。可以把事件分为事件冒泡和事件捕获。
+事件冒泡当鼠标点击或其他方式触发事件时，事件会从点击的元素不断上升直到根节点。会在某一个外层捕获这个冒泡事件，执行操作。
+示例如下只需要监听ul上是否触发点击事件，而不需要在每一个li上添加点击事件。因为每个函数都会占用内存空间，现在只需要一个事件处理程序酒可以代理所有事件
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-06 14:54" pubdate>
+              2020-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/05/06/%E8%AE%A4%E8%AF%86Object-defineProperty/" target="_self">
           <img src="/img/default/javascript-default.jpg" srcset="/img/loading.gif" lazyload alt="认识Object.defineProperty()">
         </a>
@@ -214,8 +272,7 @@ Object.defineProperty(obj, prop, descriptor)
 参数- obj 要操作的对象
 - prop 修改或新增的属性名称
 - descriptor 属性描述符
-
-属性描述符描述符不能两者同时存在，只能
+属性描述符描述符不能两者同时存在，只能是
         </a>
       </p>
 
@@ -334,9 +391,8 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
           
           安装 Laravel-mix移动文件将webpack.mix.js 和 package.json两个文件复制到ThinkPHP5项目的根目录
 安装依赖1yarn install
-
 设置路径修改webpack.mix.js文件,增加.setPublicPath(&#39;./public&#39;);
-1const mix = require('laravel-mix');2mix.js('reso
+1const mix = require('laravel-mix');2mix.js('resou
         </a>
       </p>
 
@@ -397,10 +453,8 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
             
           
           数据库迁移工具 think-migration通过composer安装1composer require topthink/think-migration=2.0.*
-
 安装完成后，在命令行下查看，就会发现新增了几个migrate和seed命令1php think
-
-1migrate2 migrate:create     Create a new migration3 migrate:rollb
+1migrate2 migrate:create     Create a new migration3 migrate:rollbac
         </a>
       </p>
 
@@ -511,9 +565,11 @@ Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。
 
 
 
+
 选择器
 例子
 描述
+
 
 
 
@@ -544,7 +600,7 @@ div p
 
 子元素选择器
 div&gt;p
-选择父元素为
+选择父元
         </a>
       </p>
 
@@ -600,10 +656,9 @@ CSS3 创建动画
 
 1div&#123;2	width:100px;3	height:100px;4	background:red;5	animation:change 5s;6&#125;
 
-
 创建 @keyframes 动画规则
 
-
+1
         </a>
       </p>
 
@@ -661,8 +716,7 @@ CSS3 创建动画
           
           JavaScript事件类型浏览器中的事件有很多，在这我只记录了常用的一些事件。详细内容请前往MDN查看。
 资源事件onload 事件onload 事件会在页面或图像加载完成后立即发生。
-在 HTML 中:
-1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log(
+在 HTML 中:1&lt;body onload="loadHtml()"&gt;2&lt;script &gt;3  function loadHtml() &#123;4     console.log('
         </a>
       </p>
 
@@ -714,8 +768,7 @@ CSS3 创建动画
           
           原理设置一个div宽高都为0，通过border来控制这个div的大小。然后将其中几个边background设置为transparent，即可得到三角形
 实现1&lt;div class='triangle'&gt;&lt;/div&gt;
-
-1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;
+1.triangle&#123;2      width: 0;3      height: 0;4      background-color: #fff;5
         </a>
       </p>
 
@@ -741,62 +794,6 @@ CSS3 创建动画
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%A0%B7%E5%BC%8F/">样式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/03/26/%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/" target="_self">
-          在页面上隐藏元素的方法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/03/26/%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/" target="_self">
-          
-          
-            
-          
-          
-display:none;         // 让元素在页面中消失，不占据实际的空间
-overflow:hidden;      
-visibility:hidden;    // 隐藏内容，但占位保留
-opacity:0;            // 视觉上的隐藏，元素还是占据有文档的位置
-width:0,height:0;     // 元素宽高为0
-z-index: -999999999
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-03-26 10:40" pubdate>
-              2020-03-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CSS/">CSS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0/">隐藏元素</a>
             
           </div>
         
